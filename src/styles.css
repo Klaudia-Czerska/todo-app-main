@@ -22,6 +22,7 @@
 }
 
 body {
+    background-color: var(--very-dark-blue);
     min-height: 100svh;
     padding: 2rem;
 }
@@ -40,10 +41,16 @@ body {
     align-items: center;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 2rem;
 }
 
 .todo__header-title {
-    color: ;
+    color: var(--very-light-grayish-blue);
+    letter-spacing: 0.8rem;
+}
+
+.todo__add-task {
+    background-color: var(--very-dark-desaturated-blue);
 }
 
 .attribution { 
