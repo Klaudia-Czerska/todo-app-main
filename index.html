@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/styles.css">
+  <title>Frontend Mentor | Todo app</title>
+</head>
+<body>
+  <header class="todo__header">
+    <h1 class="todo__header-title">TODO</h1>
+    <img class="todo__header-switch" src="./images/icon-sun.svg" alt="">
+    <div class="todo__background"></div>
+  </header>
+  <main class="todo__app">
+    <ul class="todo__task-list">
+      <li class="todo__task">
+        <img src="./images/icon-check.svg" alt="" class="todo__task-check">
+        <span class="todo__task-text">Complete online JavaScript course</span>
+        <img src="./images/icon-cross.svg" alt="" class="todo__task-cross">
+      </li>
+    </ul>
+    <article class="todo__task-list-info">
+      <span class="todo__task-left"><span class="todo__task-left-number">5</span> items left</span>
+      <span class="todo__task-clear-completed">Clear Completed</span>
+    </article>
+  </main>
+  <footer>
+    <nav class="todo__choose-tasks">
+      <span class="todo__all-tasks">All</span>
+      <span class="todo__active-tasks">Active</span>
+      <span class="todo__completed-tasks">Completed</span>
+    </nav>
+    <span class="todo__drag-and-drop">Drag and drop to reorder list</span>
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="#">Your Name Here</a>.
+    </div>
+  </footer>
+</body>
+</html>
