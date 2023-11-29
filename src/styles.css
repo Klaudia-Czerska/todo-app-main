@@ -75,7 +75,7 @@ body {
     background-color: var(--tasks-background);
     border: none;
     border-radius: 5px;
-    color: var(--input-text);
+    color: var(--text-color);
     outline: none;
     padding: 1rem;
     padding-left: 4.5rem;
@@ -89,10 +89,9 @@ body {
 
 .todo__task-list {
     background-color: var(--tasks-background);
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
     color: var(--text-color);
     list-style: none;
-    margin-bottom: 1rem;
 }
 
 .todo__task {
@@ -102,16 +101,26 @@ body {
     padding: 1.5rem;
 }
 
-#todo__task-check {
+#todo__task-check,
+#todo__task-checked {
     border: 1px solid var(--crossed-off-task);
     border-radius: 50%;
-    color: var(--tasks-background);
     cursor: pointer;
+    font-size: 1rem;
     left: -1.8rem;
     padding: 0.3rem;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+}
+
+#todo__task-check {
+    color: var(--tasks-background);
+}
+
+#todo__task-checked {
+    background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    color: var(--text-color);
 }
 
 #todo__task-cross {
@@ -136,10 +145,13 @@ body {
 
 .todo__task-list-info {
     align-items: center;
+    background-color: var(--tasks-background);
+    border-radius: 0 0 5px 5px;
     display: flex;
     color: var(--info-items);
     font-size: 0.8rem;
     justify-content: space-between;
+    margin-bottom: 1rem;
     padding: 1.2rem;
 }
 
