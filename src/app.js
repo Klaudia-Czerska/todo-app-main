@@ -1,13 +1,13 @@
 const inputTask = document.querySelector('.todo__add-task-input');
 const taskList = document.querySelector('.todo__task-list');
-let checks = document.querySelectorAll('#todo__task-check');
+
 
 const taskApiUrl = 'http://localhost:3000/tasks';
 
 //Handling deleting a task
 
 const deletingTaskFromBackend = async (taskId) => {
-    await fetch(`http://localhost:3000/tasks/${taskId}`, {
+    await fetch(`${taskApiUrl}/${taskId}`, {
         method: 'DELETE'
     });
 }
@@ -19,24 +19,64 @@ const deletingTask = () => {
             deletingTaskFromBackend(cross.parentElement.id);
             let taskToDelete = cross.parentElement;
             taskToDelete.parentElement.removeChild(taskToDelete);
-
         })
     })
 }
+
+// Handling updating a task
+
+const updatingTaskInBackend = async (task) => {
+    await fetch(`${taskApiUrl}/${task.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(task),
+        headers: {
+            "Content-type": "application/json"
+        }
+    })
+}
+
+const updatingTask = () => {
+    const checks = document.querySelectorAll('.fa-check');
+    checks.forEach(check => {
+        check.addEventListener('click', () => {
+            let updatedInfo;
+            if (check.classList.contains('todo__task-checked')) {
+                updatedInfo = {
+                    id: check.parentElement.id,
+                    completed: 0
+                }
+                check.classList.remove('todo__task-checked')
+                check.classList.add('todo__task-check')
+            } else {
+                updatedInfo = {
+                    id: check.parentElement.id,
+                    completed: 1
+                }  
+                check.classList.add('todo__task-checked')
+                check.classList.remove('todo__task-check')
+            }
+            updatingTaskInBackend(updatedInfo);
+        })
+    })
+}
+
 
 const updatingTaskList = (arr) => {
     taskList.innerHTML = '';
     arr.forEach(task => {
         const newTask = `
         <li class="todo__task" id="${task.id}">
-            <i class="fa-solid fa-check" id="todo__task-check${task.completed ? "ed" : ""}"></i>
+            <i class="fa-solid fa-check ${task.completed ? "todo__task-checked" : "todo__task-check"}"></i>
             <span class="todo__task-text">${task.task}</span>
             <i class="fa-solid fa-xmark" id="todo__task-cross"></i>
         </li>`
         taskList.innerHTML += newTask;
     })
     deletingTask();
+    updatingTask();
 }
+
+// Getting the data from database
 
 const gettingTasks = async () => {
     try {
@@ -56,7 +96,7 @@ gettingTasks();
 // Handling adding a task
 
 const sendingTaskToBackend = async (task) => {
-    await fetch('http://localhost:3000/tasks', {
+    await fetch(taskApiUrl, {
         method: 'POST',
         body: JSON.stringify(task),
         headers: {

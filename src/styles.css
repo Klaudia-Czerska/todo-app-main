@@ -101,8 +101,8 @@ body {
     padding: 1.5rem;
 }
 
-#todo__task-check,
-#todo__task-checked {
+.todo__task-check,
+.todo__task-checked {
     border: 1px solid var(--crossed-off-task);
     border-radius: 50%;
     cursor: pointer;
@@ -114,13 +114,18 @@ body {
     transform: translateY(-50%);
 }
 
-#todo__task-check {
+.todo__task-check {
     color: var(--tasks-background);
 }
 
-#todo__task-checked {
+.todo__task-checked {
     background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
     color: var(--text-color);
+}
+
+.todo__task-checked ~ .todo__task-text {
+    color: var(--input-text);
+    text-decoration: line-through;
 }
 
 #todo__task-cross {
