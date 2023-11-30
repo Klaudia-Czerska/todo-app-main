@@ -1,14 +1,27 @@
 const inputTask = document.querySelector('.todo__add-task-input');
 const taskList = document.querySelector('.todo__task-list');
 let checks = document.querySelectorAll('#todo__task-check');
-let crosses = document.querySelectorAll('#todo__task-cross');
 
 const taskApiUrl = 'http://localhost:3000/tasks';
 
-const deletingTaskFromBackend = (taskId) => {
-    fetch(`http://localhost:3000/tasks/${taskId}`, {
+//Handling deleting a task
+
+const deletingTaskFromBackend = async (taskId) => {
+    await fetch(`http://localhost:3000/tasks/${taskId}`, {
         method: 'DELETE'
     });
+}
+
+const deletingTask = () => {
+    const crosses = document.querySelectorAll('#todo__task-cross');
+    crosses.forEach(cross => {
+        cross.addEventListener('click', () => {
+            deletingTaskFromBackend(cross.parentElement.id);
+            let taskToDelete = cross.parentElement;
+            taskToDelete.parentElement.removeChild(taskToDelete);
+
+        })
+    })
 }
 
 const updatingTaskList = (arr) => {
@@ -22,18 +35,7 @@ const updatingTaskList = (arr) => {
         </li>`
         taskList.innerHTML += newTask;
     })
-    checks = document.querySelectorAll('#todo__task-check');
-    crosses = document.querySelectorAll('#todo__task-cross');
-    
-    //Handling deleting a task
-
-    crosses.forEach(cross => {
-        cross.addEventListener('click', () => {
-            console.log(cross.parentElement.id)
-            deletingTaskFromBackend(cross.parentElement.id);
-            gettingTasks();
-        })
-    })
+    deletingTask();
 }
 
 const gettingTasks = async () => {
@@ -53,14 +55,15 @@ gettingTasks();
 
 // Handling adding a task
 
-const sendingTaskToBackend = (task) => {
-    fetch('http://localhost:3000/tasks', {
+const sendingTaskToBackend = async (task) => {
+    await fetch('http://localhost:3000/tasks', {
         method: 'POST',
         body: JSON.stringify(task),
         headers: {
             "Content-type": "application/json"
         }
     });
+    
 }
 
 inputTask.addEventListener('keypress', (e) => {
@@ -71,7 +74,9 @@ inputTask.addEventListener('keypress', (e) => {
             completed: 0
         }
         sendingTaskToBackend(newTask);
-        inputTask.value = '';
         gettingTasks();
+        inputTask.value = '';
     }
 })
+
+
