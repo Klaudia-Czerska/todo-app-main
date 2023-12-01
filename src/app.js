@@ -85,6 +85,7 @@ const gettingTasks = async () => {
             const jsonResponse = await response.json();
             let taskListArray = jsonResponse.tasks;
             updatingTaskList(taskListArray)
+
         }
     } catch (error) {
         console.log(error);
@@ -102,19 +103,36 @@ const sendingTaskToBackend = async (task) => {
         headers: {
             "Content-type": "application/json"
         }
-    });
+    })
+        .then(response => {
+            if (response.ok) {
+                console.log(response)
+            }
+        })
     
 }
 
-inputTask.addEventListener('keypress', (e) => {
+inputTask.addEventListener('keypress', async (e) => {
     if (e.key === 'Enter' && inputTask.value.length !== 0) {
         e.preventDefault();
         const newTask = {
             task: inputTask.value,
             completed: 0
         }
-        sendingTaskToBackend(newTask);
-        gettingTasks();
+        
+        await fetch(taskApiUrl, {
+            method: 'POST',
+            body: JSON.stringify(newTask),
+            headers: {
+                "Content-type": "application/json"
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    gettingTasks();
+                }
+            })
+
         inputTask.value = '';
     }
 })
