@@ -96,22 +96,6 @@ gettingTasks();
 
 // Handling adding a task
 
-const sendingTaskToBackend = async (task) => {
-    await fetch(taskApiUrl, {
-        method: 'POST',
-        body: JSON.stringify(task),
-        headers: {
-            "Content-type": "application/json"
-        }
-    })
-        .then(response => {
-            if (response.ok) {
-                console.log(response)
-            }
-        })
-    
-}
-
 inputTask.addEventListener('keypress', async (e) => {
     if (e.key === 'Enter' && inputTask.value.length !== 0) {
         e.preventDefault();
