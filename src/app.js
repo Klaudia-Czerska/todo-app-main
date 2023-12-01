@@ -1,8 +1,15 @@
 const inputTask = document.querySelector('.todo__add-task-input');
 const taskList = document.querySelector('.todo__task-list');
-
+const tasksNumber = document.querySelector('.todo__tasks-left-number');
 
 const taskApiUrl = 'http://localhost:3000/tasks';
+
+
+// Updating a number of tasks left
+
+const updatingNumberOfTasks = () => {
+    tasksNumber.innerText = taskList.childElementCount;
+}
 
 //Handling deleting a task
 
@@ -19,6 +26,7 @@ const deletingTask = () => {
             deletingTaskFromBackend(cross.parentElement.id);
             let taskToDelete = cross.parentElement;
             taskToDelete.parentElement.removeChild(taskToDelete);
+            updatingNumberOfTasks();
         })
     })
 }
@@ -74,6 +82,7 @@ const updatingTaskList = (arr) => {
     })
     deletingTask();
     updatingTask();
+    updatingNumberOfTasks();
 }
 
 // Getting the data from database
@@ -120,5 +129,4 @@ inputTask.addEventListener('keypress', async (e) => {
         inputTask.value = '';
     }
 })
-
 
