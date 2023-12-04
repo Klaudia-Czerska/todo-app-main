@@ -4,6 +4,21 @@ const tasksNumber = document.querySelector('.todo__tasks-left-number');
 const tasksFilter = document.querySelectorAll('.todo__choose-tasks > label');
 let activeFilter = 'All';
 const clearCompleted = document.querySelector('.todo__task-clear-completed');
+const themeSwitch = document.querySelector('.todo__header-switch');
+
+themeSwitch.addEventListener('click', () => {
+    console.log(themeSwitch)
+    const body = document.querySelector('body');
+    if (body.classList.contains('todo__dark-theme')) {
+        body.classList.remove('todo__dark-theme');
+        body.classList.add('todo__light-theme');
+        themeSwitch.src = "./images/icon-moon.svg"
+    } else {
+        body.classList.remove('todo__light-theme');
+        body.classList.add('todo__dark-theme');
+        themeSwitch.src = "./images/icon-sun.svg"
+    }
+})
 
 // Clearing completed tasks
 
@@ -18,6 +33,7 @@ clearCompleted.addEventListener('click', () => {
 })
 
 // Filtering tasks
+
 tasksFilter.forEach(filter => {
     filter.addEventListener('click', () => {
         activeFilter = filter.textContent;

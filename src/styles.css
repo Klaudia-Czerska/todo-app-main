@@ -1,17 +1,6 @@
 :root {
     --active-sorting-option: hsl(220, 98%, 61%);
-    --main-background: hsl(0, 0%, 98%);
-    --tasks-background: hsl(236, 33%, 92%);
-    --text-color: hsl(233, 11%, 84%);
-    --crossed-off-task: hsl(236, 9%, 61%);
-    --input-text: hsl(235, 19%, 35%);
-    --main-background: hsl(235, 21%, 11%);
-    --tasks-background: hsl(235, 24%, 19%);
-    --text-color: hsl(234, 39%, 85%);
-    --text-color-hover: hsl(236, 33%, 92%);
-    --input-text: hsl(234, 11%, 52%);
-    --info-items: hsl(233, 14%, 35%);
-    --crossed-off-task: hsl(237, 14%, 26%);
+    --text-color-hover: hsl(0, 0%, 100%);
 }
 
 * {
@@ -19,6 +8,26 @@
     font-family: "Josefin Sans", sans-serif;
     margin: 0;
     padding: 0;
+}
+
+.todo__dark-theme {
+    --main-background: hsl(235, 21%, 11%);
+    --tasks-background: hsl(235, 24%, 19%);
+    --text-color: hsl(234, 39%, 85%);
+    --input-text: hsl(234, 11%, 52%);
+    --info-items: hsl(233, 14%, 35%);
+    --crossed-off-task: hsl(235,16%,28%);
+    --background: url(../images/bg-mobile-dark.jpg);
+}
+
+.todo__light-theme {
+    --tasks-background: hsl(0, 0%, 100%);
+    --main-background: hsl(0, 0%, 98%);
+    /* --main-background: hsl(236, 33%, 92%); */
+    --text-color: hsl(245, 12%, 36%);
+    --crossed-off-task: hsl(252, 6%, 84%);
+    --input-text: hsl(235, 19%, 35%);
+    --background: url(../images/bg-mobile-light.jpg);
 }
 
 body {
@@ -30,7 +39,7 @@ body {
 }
 
 .todo__background {
-    background: no-repeat url(../images/bg-mobile-dark.jpg) center/cover;
+    background: no-repeat var(--background) center/cover;
     height: 40%;
     left: 0;
     position: absolute;
@@ -46,6 +55,10 @@ body {
     margin-bottom: 2rem;
 }
 
+.todo__header-switch {
+    cursor: pointer;
+}
+
 .todo__header-title {
     color: var(--text-color-hover);
     letter-spacing: 0.8rem;
@@ -55,6 +68,7 @@ body {
     background-color: var(--tasks-background);
     border-radius: 5px;
     margin-bottom: 1rem;
+    padding: 0.5rem 0;
     position: relative;
 }
 
@@ -103,9 +117,11 @@ body {
 .todo__task {
     cursor: move;
     font-size: 0.8rem;
+    line-height: 1.5;
     margin-left: 3rem;
     position: relative;
     padding: 1.5rem;
+    word-wrap: break-word;
 }
 
 .todo__task.dragging {
@@ -137,7 +153,7 @@ body {
 }
 
 .todo__task-checked ~ .todo__task-text {
-    color: var(--info-items);
+    color: var(--crossed-off-task);
     text-decoration: line-through;
 }
 
@@ -207,6 +223,12 @@ body {
     color: var(--active-sorting-option);
 }
 
+.todo__drag-and-drop {
+    color: var(--input-text);
+    margin-top: 4rem;
+    text-align: center; 
+}
+
 .attribution { 
     color: var(--info-items);
     font-size: 11px; 
@@ -225,8 +247,16 @@ body {
         justify-content: center;
     }
 
+    .todo__dark-theme {
+        --background: url(../images/bg-desktop-dark.jpg);
+    }
+
+    .todo__light-theme {
+        --background: url(../images/bg-desktop-light.jpg);
+    }
+
     .todo__background {
-        background: no-repeat url(../images/bg-desktop-dark.jpg) center/cover;
+        background: no-repeat var(--background) center/cover;
     }
 
     .todo__app,
