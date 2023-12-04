@@ -14,6 +14,7 @@
     --main-background: hsl(235, 21%, 11%);
     --tasks-background: hsl(235, 24%, 19%);
     --text-color: hsl(234, 39%, 85%);
+    --outline-color: hsl(234, 39%, 85%);
     --input-text: hsl(234, 11%, 52%);
     --info-items: hsl(233, 14%, 35%);
     --crossed-off-task: hsl(235,16%,28%);
@@ -25,8 +26,10 @@
     --main-background: hsl(0, 0%, 98%);
     /* --main-background: hsl(236, 33%, 92%); */
     --text-color: hsl(245, 12%, 36%);
+    --outline-color:  hsl(220, 98%, 61%);
     --crossed-off-task: hsl(252, 6%, 84%);
     --input-text: hsl(235, 19%, 35%);
+    --shadow: hsl(235, 19%, 35%, 0.1);
     --background: url(../images/bg-mobile-light.jpg);
 }
 
@@ -68,7 +71,6 @@ body {
     background-color: var(--tasks-background);
     border-radius: 5px;
     margin-bottom: 1rem;
-    padding: 0.5rem 0;
     position: relative;
 }
 
@@ -93,14 +95,14 @@ body {
     border-radius: 5px;
     color: var(--text-color);
     outline: none;
-    padding: 1rem;
+    padding: 1.5rem;
     padding-left: 4.5rem;
     transition: outline 0.3s ease;
     width: 100%;
 }
 
 .todo__add-task-input:focus-visible {
-    outline: 1px solid var(--text-color);
+    outline: 1px solid var(--outline-color);
 }
 
 .todo__add-task-input:focus::placeholder {
@@ -110,6 +112,7 @@ body {
 .todo__task-list {
     background-color: var(--tasks-background);
     border-radius: 5px 5px 0 0;
+    box-shadow: 0 15px 25px 25px var(--shadow);
     color: var(--text-color);
     list-style: none;
 }
@@ -181,6 +184,7 @@ body {
     align-items: center;
     background-color: var(--tasks-background);
     border-radius: 0 0 5px 5px;
+    box-shadow: 0 25px 35px 15px var(--shadow);
     display: flex;
     color: var(--info-items);
     font-size: 0.8rem;

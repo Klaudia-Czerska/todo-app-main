@@ -7,7 +7,6 @@ const clearCompleted = document.querySelector('.todo__task-clear-completed');
 const themeSwitch = document.querySelector('.todo__header-switch');
 
 themeSwitch.addEventListener('click', () => {
-    console.log(themeSwitch)
     const body = document.querySelector('body');
     if (body.classList.contains('todo__dark-theme')) {
         body.classList.remove('todo__dark-theme');
