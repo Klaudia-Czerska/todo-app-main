@@ -28,9 +28,12 @@
       <span class="todo__task-clear-completed">Clear Completed</span>
     </article>
     <article class="todo__choose-tasks">
-      <span class="todo__all-tasks">All</span>
-      <span class="todo__active-tasks">Active</span>
-      <span class="todo__completed-tasks">Completed</span>
+      <input type="radio" name="filter" id="all" class="todo__all-tasks-radio" checked></input>
+      <label for="all" class="todo__all-tasks">All</label>
+      <input type="radio" name="filter" id="active" class="todo__active-tasks-radio"></input>
+      <label for="active" class="todo__all-tasks">Active</label>
+      <input type="radio" name="filter" id="completed" class="todo__completed-tasks-radio"></input>
+      <label for="completed" class="todo__all-tasks">Completed</label>
     </article>
     <span class="todo__drag-and-drop">Drag and drop to reorder list</span>
   </main>

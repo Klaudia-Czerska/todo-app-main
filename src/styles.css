@@ -64,11 +64,13 @@ body {
     color: var(--tasks-background);
     cursor: pointer;
     font-size: 0.8rem;
+    height: 1.7rem;
     left: 1.2rem;
     padding: 0.3rem;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    width: 1.7rem;
 }
 
 .todo__add-task-input {
@@ -87,6 +89,10 @@ body {
     outline: 1px solid var(--text-color);
 }
 
+.todo__add-task-input:focus::placeholder {
+    color: transparent;
+}
+
 .todo__task-list {
     background-color: var(--tasks-background);
     border-radius: 5px 5px 0 0;
@@ -95,10 +101,15 @@ body {
 }
 
 .todo__task {
+    cursor: move;
     font-size: 0.8rem;
     margin-left: 3rem;
     position: relative;
     padding: 1.5rem;
+}
+
+.todo__task.dragging {
+    opacity: 0.5;
 }
 
 .todo__task-check,
@@ -166,6 +177,10 @@ body {
     cursor: pointer;
 }
 
+.todo__task-clear-completed:hover {
+    color: var(--text-color);
+}
+
 .todo__choose-tasks {
     background-color: var(--tasks-background);
     border-radius: 5px;
@@ -176,8 +191,20 @@ body {
     padding: 1rem;
 }
 
-.todo__choose-tasks > span {
+.todo__choose-tasks > input[type="radio"] {
+    display: none;
+}
+
+.todo__choose-tasks > label {
     cursor: pointer;
+}
+
+.todo__choose-tasks > label:hover {
+    color: var(--text-color);
+}
+
+.todo__choose-tasks > input[type="radio"]:checked+label {
+    color: var(--active-sorting-option);
 }
 
 .attribution { 
@@ -237,19 +264,9 @@ body {
     }
 
     .todo__task-check:hover {
-        background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+        background: linear-gradient(var(--tasks-background), var(--tasks-background)) padding-box,
+                    linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
+        border: 1px solid transparent;
     }    
-
-    .todo__task-check:hover::after {
-        background-color: var(--tasks-background);
-        border-radius: 50%;
-        content: '';
-        height: 93%;
-        left: 49%;
-        position: absolute;
-        top: 49%;
-        transform: translate(-50%, -50%);
-        width: 93%;
-    }
 
 }
