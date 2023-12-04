@@ -41,7 +41,7 @@ tasksFilter.forEach(filter => {
 })
 
 
-const taskApiUrl = 'http://localhost:3000/tasks';
+const taskApiUrl = 'https://fine-dog-sweatshirt.cyclic.app/tasks';
 
 
 // Updating a number of tasks left
