@@ -20,7 +20,7 @@ const deletingTaskFromBackend = async (taskId) => {
 }
 
 const deletingTask = () => {
-    const crosses = document.querySelectorAll('#todo__task-cross');
+    const crosses = document.querySelectorAll('.todo__task-cross');
     crosses.forEach(cross => {
         cross.addEventListener('click', () => {
             deletingTaskFromBackend(cross.parentElement.id);
@@ -76,7 +76,7 @@ const updatingTaskList = (arr) => {
         <li class="todo__task" id="${task.id}">
             <i class="fa-solid fa-check ${task.completed ? "todo__task-checked" : "todo__task-check"}"></i>
             <span class="todo__task-text">${task.task}</span>
-            <i class="fa-solid fa-xmark" id="todo__task-cross"></i>
+            <i class="fa-solid fa-xmark todo__task-cross"></i>
         </li>`
         taskList.innerHTML += newTask;
     })
